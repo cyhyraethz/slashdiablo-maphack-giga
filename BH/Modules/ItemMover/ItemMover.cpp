@@ -81,6 +81,7 @@ void ItemMover::Init() {
 	CUBE_WIDTH = cubeLayout->SlotWidth;
 	CUBE_HEIGHT = cubeLayout->SlotHeight;
 
+	INVENTORY_HEIGHT = 9;
 	STASH_WIDTH = 10;
 	LOD_STASH_HEIGHT = 10;
 
@@ -402,10 +403,10 @@ void ItemMover::OnRightClick(bool up, int x, int y, bool* block) {
 	int invUI = D2CLIENT_GetUIState(UI_INVENTORY);
 	int stashUI = D2CLIENT_GetUIState(UI_STASH);
 	int cubeUI = D2CLIENT_GetUIState(UI_CUBE);
-	if ((invUI || stashUI || cubeUI) && x >= INVENTORY_LEFT && x <= inventoryRight && y >= INVENTORY_TOP && y <= inventoryBottom) {
+	if ((invUI || stashUI || cubeUI) && x >= INVENTORY_LEFT && x <= inventoryRight && y >= (INVENTORY_TOP - 5*CELL_SIZE + 13) && y <= inventoryBottom) {
 		source = STORAGE_INVENTORY;
 		sourceX = (x - INVENTORY_LEFT) / CELL_SIZE;
-		sourceY = (y - INVENTORY_TOP) / CELL_SIZE;
+		sourceY = (y - INVENTORY_TOP + 5*CELL_SIZE - 13) / CELL_SIZE;
 	} else if (stashUI && x >= (STASH_LEFT - 2*CELL_SIZE) && x <= stashRight && y >= stashTop && y <= stashBottom) {
 		source = STORAGE_STASH;
 		sourceX = (x - STASH_LEFT + 2*CELL_SIZE) / CELL_SIZE;
