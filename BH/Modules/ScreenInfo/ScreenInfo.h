@@ -28,9 +28,7 @@ class ScreenInfo : public Module {
 		std::vector<std::string> automapInfo;
 		std::map<DWORD, string> SkillWarningMap;
 		std::deque<StateWarning*> CurrentWarnings;
-		Drawing::Texthook* bhText;
 		Drawing::Texthook* mpqVersionText;
-		Drawing::Texthook* d2VersionText;
 		DWORD gameTimer;
 
 		int packetRequests;
