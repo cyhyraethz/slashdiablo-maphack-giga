@@ -49,7 +49,6 @@ class Maphack : public Module {
 	Maphack();
 
 	void ReadConfig();
-	void OnLoad();
 	void OnUnload();
 
 	void LoadConfig();
