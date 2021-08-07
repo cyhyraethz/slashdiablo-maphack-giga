@@ -340,7 +340,7 @@ void ItemMover::OnLeftClick(bool up, int x, int y, bool* block) {
 				mouseX = (*p_D2CLIENT_MouseX - INVENTORY_LEFT) / CELL_SIZE;
 				mouseY = (*p_D2CLIENT_MouseY - INVENTORY_TOP) / CELL_SIZE;
 			} else if(pItem->pItemData->ItemLocation == STORAGE_STASH) {
-				mouseX = (*p_D2CLIENT_MouseX - STASH_LEFT) / CELL_SIZE;
+				mouseX = (*p_D2CLIENT_MouseX - (STASH_LEFT - 2*CELL_SIZE)) / CELL_SIZE;
 				if (xpac) {
 					mouseY = (*p_D2CLIENT_MouseY - LOD_STASH_TOP) / CELL_SIZE;
 				} else {
