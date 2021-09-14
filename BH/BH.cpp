@@ -117,7 +117,7 @@ void BH::Initialize()
 		SetWindowLong(D2GFX_GetHwnd(), GWL_WNDPROC, (LONG)GameWindowEvent);
 	});
 
-	settingsUI = new Drawing::UI("Settings", 400, 292);
+	settingsUI = new Drawing::UI("Settings", 400, 253);
 
 	Task::InitializeThreadPool(2);
 
