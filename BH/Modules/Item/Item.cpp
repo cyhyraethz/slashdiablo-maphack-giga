@@ -148,33 +148,33 @@ void Item::DrawSettings() {
 	int y = 10;
 	int keyhook_x = 230;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Show Ethereal"].state, "Show Ethereal");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Ethereal"].toggle, "");
-	y += 15;
+	//new Checkhook(settingsTab, 4, y, &Toggles["Show Ethereal"].state, "Show Ethereal");
+	//new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Ethereal"].toggle, "");
+	//y += 15;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Show Sockets"].state, "Show Sockets");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Sockets"].toggle, "");
-	y += 15;
+	//new Checkhook(settingsTab, 4, y, &Toggles["Show Sockets"].state, "Show Sockets");
+	//new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Sockets"].toggle, "");
+	//y += 15;
 
 	new Checkhook(settingsTab, 4, y, &Toggles["Show Item Level"].state, "Show Item Level");
 	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Item Level"].toggle, "");
 	y += 15;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Show Rune Numbers"].state, "Show Rune #");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Rune Numbers"].toggle, "");
-	y += 15;
+	//new Checkhook(settingsTab, 4, y, &Toggles["Show Rune Numbers"].state, "Show Rune Numbers");
+	//new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Rune Numbers"].toggle, "");
+	//y += 15;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Alt Item Style"].state, "Alt Style");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Alt Item Style"].toggle, "");
-	y += 15;
+	//new Checkhook(settingsTab, 4, y, &Toggles["Alt Item Style"].state, "Alt Item Style");
+	//new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Alt Item Style"].toggle, "");
+	//y += 15;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Color Mod"].state, "Color Mod");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Color Mod"].toggle, "");
-	y += 15;
+	//new Checkhook(settingsTab, 4, y, &Toggles["Color Mod"].state, "Color Mod");
+	//new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Color Mod"].toggle, "");
+	//y += 15;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Shorten Item Names"].state, "Shorten Names");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Shorten Item Names"].toggle, "");
-	y += 15;
+	//new Checkhook(settingsTab, 4, y, &Toggles["Shorten Item Names"].state, "Shorten Item Names");
+	//new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Shorten Item Names"].toggle, "");
+	//y += 15;
 
 	new Checkhook(settingsTab, 4, y, &Toggles["Always Show Items"].state, "Always Show Items");
 	new Keyhook(settingsTab, keyhook_x, y + 2, &Toggles["Always Show Items"].toggle, "");
