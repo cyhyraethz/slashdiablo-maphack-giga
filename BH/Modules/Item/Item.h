@@ -61,6 +61,7 @@ class Item : public Module {
 		static unsigned int pingLevelSetting;
 	public:
 		unsigned int statsKey;
+		unsigned int reloadConfig;
 
 		Item() : Module("Item") {};
 
