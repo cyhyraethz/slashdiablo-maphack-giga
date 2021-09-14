@@ -60,6 +60,7 @@ class Item : public Module {
 		static unsigned int filterLevelSetting;
 		static unsigned int pingLevelSetting;
 	public:
+		unsigned int statsKey;
 
 		Item() : Module("Item") {};
 

@@ -2,6 +2,8 @@
 #include "../Basic/Texthook/Texthook.h"
 #include "../Basic/Framehook/Framehook.h"
 #include "../Basic/Boxhook/Boxhook.h"
+#include "../../Modules/Item/Item.h"
+#include "../../D2Helpers.h"
 #include "../../D2Ptrs.h"
 #include "../../BH.h"
 
@@ -23,7 +25,6 @@ StatsDisplay::StatsDisplay(std::string name) {
 	SetActive(true);
 	SetMinimized(true);
 
-	BH::config->ReadKey("Character Stats", "VK_5", statsKey);
 	display = this;
 }
 
@@ -371,14 +372,15 @@ bool StatsDisplay::OnKey(bool up, BYTE kkey, LPARAM lParam) {
 	if (!unit)
 		return false;
 
+	Item* item = static_cast<Item*>(BH::moduleManager->Get("item"));
 	if (IsMinimized()) {
-		if (!up && kkey == statsKey) {
+		if (!up && kkey == item->statsKey) {
 			LoadConfig();
 			SetMinimized(false);
 			return true;
 		}
 	} else {
-		if (!up && (kkey == statsKey || kkey == VK_ESCAPE)) {
+		if (!up && (kkey == item->statsKey || kkey == VK_ESCAPE)) {
 			SetMinimized(true);
 			return true;
 		}
