@@ -58,7 +58,7 @@ void Maphack::ReadConfig() {
 	BH::config->ReadInt("LK Chest Lines", lkLinesColor);
 	BH::config->ReadInt("Manaburn Monster Color", mbMonColor);
 
-	BH::config->ReadKey("Reload Config", "VK_NUMPAD0", reloadConfig);
+	BH::config->ReadKey("Reload Config", "VK_0", reloadConfig);
 	BH::config->ReadToggle("Show Settings", "VK_NUMPAD8", true, Toggles["Show Settings"]);
 
 	BH::config->ReadAssoc("Missile Color", missileColors);

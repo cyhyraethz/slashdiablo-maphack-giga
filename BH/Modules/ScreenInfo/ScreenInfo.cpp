@@ -22,7 +22,7 @@ void ScreenInfo::OnLoad() {
 }
 
 void ScreenInfo::LoadConfig() {
-	BH::config->ReadToggle("Experience Meter", "VK_NUMPAD7", false, Toggles["Experience Meter"]);
+	BH::config->ReadToggle("Experience Meter", "VK_7", false, Toggles["Experience Meter"]);
 
 	BH::config->ReadArray("AutomapInfo", automapInfo);
 
