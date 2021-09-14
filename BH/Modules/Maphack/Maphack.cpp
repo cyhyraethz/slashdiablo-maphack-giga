@@ -307,7 +307,7 @@ void Maphack::OnDraw() {
 							// Skip notification if ping level requirement not met
 							if (action.pingLevel > Item::GetPingLevel()) continue;
 							unit->dwFlags |= UNITFLAG_REVEALED;
-							if ((*BH::MiscToggles2)["Item Detailed Notifications"].state
+							if ((*BH::MiscToggles2)["Item Detail Notifications"].state
 							  && ((*BH::MiscToggles2)["Item Close Notifications"].state || (dwFlags & ITEMFLAG_NEW))
 							  && action.notifyColor != DEAD_COLOR) {
 								std::string itemName = GetItemName(unit);

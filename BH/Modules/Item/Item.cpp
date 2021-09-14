@@ -95,7 +95,7 @@ void Item::OnLoad() {
 	itemPropertyStringDamagePatch->Install();
 	itemPropertyStringPatch->Install();
 
-	if (Toggles["Show Ethereal"].state || Toggles["Show Sockets"].state || Toggles["Show iLvl"].state || Toggles["Color Mod"].state ||
+	if (Toggles["Show Ethereal"].state || Toggles["Show Sockets"].state || Toggles["Show Item Level"].state || Toggles["Color Mod"].state ||
 		Toggles["Show Rune Numbers"].state || Toggles["Alt Item Style"].state || Toggles["Shorten Item Names"].state || Toggles["Advanced Item Display"].state)
 		itemNamePatch->Install();
 
@@ -119,7 +119,7 @@ void Item::OnGameJoin() {
 void Item::LoadConfig() {
 	BH::config->ReadToggle("Show Ethereal", "None", true, Toggles["Show Ethereal"]);
 	BH::config->ReadToggle("Show Sockets", "None", true, Toggles["Show Sockets"]);
-	BH::config->ReadToggle("Show ILvl", "None", true, Toggles["Show iLvl"]);
+	BH::config->ReadToggle("Show Item Level", "None", true, Toggles["Show Item Level"]);
 	BH::config->ReadToggle("Show Rune Numbers", "None", true, Toggles["Show Rune Numbers"]);
 	BH::config->ReadToggle("Alt Item Style", "None", true, Toggles["Alt Item Style"]);
 	BH::config->ReadToggle("Color Mod", "None", false, Toggles["Color Mod"]);
@@ -128,11 +128,11 @@ void Item::LoadConfig() {
 	BH::config->ReadToggle("Advanced Item Display", "None", false, Toggles["Advanced Item Display"]);
 	BH::config->ReadToggle("Item Drop Notifications", "None", false, Toggles["Item Drop Notifications"]);
 	BH::config->ReadToggle("Item Close Notifications", "None", false, Toggles["Item Close Notifications"]);
-	BH::config->ReadToggle("Item Detailed Notifications", "None", false, Toggles["Item Detailed Notifications"]);
+	BH::config->ReadToggle("Item Detail Notifications", "None", false, Toggles["Item Detail Notifications"]);
+	BH::config->ReadToggle("Suppress Invalid Stats", "None", false, Toggles["Suppress Invalid Stats"]);
 	BH::config->ReadToggle("Verbose Notifications", "None", false, Toggles["Verbose Notifications"]);
 	BH::config->ReadToggle("Allow Unknown Items", "None", false, Toggles["Allow Unknown Items"]);
-	BH::config->ReadToggle("Suppress Invalid Stats", "None", false, Toggles["Suppress Invalid Stats"]);
-	BH::config->ReadToggle("Always Show Item Stat Ranges", "None", true, Toggles["Always Show Item Stat Ranges"]);
+	BH::config->ReadToggle("Always Show Ranges", "None", true, Toggles["Always Show Ranges"]);
 	BH::config->ReadInt("Filter Level", filterLevelSetting);
 	BH::config->ReadInt("Ping Level", pingLevelSetting);
 
@@ -156,8 +156,8 @@ void Item::DrawSettings() {
 	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Sockets"].toggle, "");
 	y += 15;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Show iLvl"].state, "Show iLvl");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show iLvl"].toggle, "");
+	new Checkhook(settingsTab, 4, y, &Toggles["Show Item Level"].state, "Show Item Level");
+	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Show Item Level"].toggle, "");
 	y += 15;
 
 	new Checkhook(settingsTab, 4, y, &Toggles["Show Rune Numbers"].state, "Show Rune #");
@@ -180,8 +180,8 @@ void Item::DrawSettings() {
 	new Keyhook(settingsTab, keyhook_x, y + 2, &Toggles["Always Show Items"].toggle, "");
 	y += 15;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Always Show Item Stat Ranges"].state, "Always Show Item Stat Ranges");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Always Show Item Stat Ranges"].toggle, "");
+	new Checkhook(settingsTab, 4, y, &Toggles["Always Show Ranges"].state, "Always Show Ranges");
+	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Always Show Ranges"].toggle, "");
 	y += 15;
 	
 	new Checkhook(settingsTab, 4, y, &Toggles["Advanced Item Display"].state, "Advanced Item Display");
@@ -196,19 +196,19 @@ void Item::DrawSettings() {
 	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Item Close Notifications"].toggle, "");
 	y += 15;
 
-	new Checkhook(settingsTab, 4, y, &Toggles["Item Detailed Notifications"].state, "Item Detailed Notifications");
-	new Keyhook(settingsTab, keyhook_x, y + 2, &Toggles["Item Detailed Notifications"].toggle, "");
-	y += 15;
-
-	new Checkhook(settingsTab, 4, y, &Toggles["Verbose Notifications"].state, "Verbose Notifications");
-	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Verbose Notifications"].toggle, "");
+	new Checkhook(settingsTab, 4, y, &Toggles["Item Detail Notifications"].state, "Item Detail Notifications");
+	new Keyhook(settingsTab, keyhook_x, y + 2, &Toggles["Item Detail Notifications"].toggle, "");
 	y += 15;
 
 	new Checkhook(settingsTab, 4, y, &Toggles["Suppress Invalid Stats"].state, "Suppress Invalid Stats");
 	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Suppress Invalid Stats"].toggle, "");
 	y += 15;
+
+	new Checkhook(settingsTab, 4, y, &Toggles["Verbose Notifications"].state, "Verbose Notifications");
+	new Keyhook(settingsTab, keyhook_x, y+2, &Toggles["Verbose Notifications"].toggle, "");
+	y += 15;
 	
-	new Keyhook(settingsTab, 4, y+2, &showPlayer, "Show Player's Gear:   ");
+	new Keyhook(settingsTab, 4, y+2, &showPlayer, "Show Players Gear:  ");
 	y += 15;
 
 	new Texthook(settingsTab, 4, y, "Filter Level:");
@@ -367,7 +367,7 @@ void __fastcall Item::ItemNamePatch(wchar_t *name, UnitAny *item)
 
 void Item::OrigGetItemName(UnitAny *item, string &itemName, char *code)
 {
-	bool displayItemLevel = Toggles["Show iLvl"].state;
+	bool displayItemLevel = Toggles["Show Item Level"].state;
 	if (Toggles["Shorten Item Names"].state)
 	{
 		// We will also strip ilvls from these items
@@ -556,7 +556,7 @@ void Item::OrigGetItemName(UnitAny *item, string &itemName, char *code)
 				itemName = "Eth " + itemName;
 			}
 	
-			/*show iLvl unless it is equal to 1*/
+			/*show item level unless it is equal to 1*/
 			if (displayItemLevel && item->pItemData->dwItemLevel != 1)
 			{
 				itemName += " L" + to_string(item->pItemData->dwItemLevel);
@@ -677,7 +677,7 @@ void __stdcall Item::OnProperties(wchar_t * wTxt)
 		}
 	}
 
-	if (!(Toggles["Always Show Item Stat Ranges"].state ||
+	if (!(Toggles["Always Show Ranges"].state ||
 				GetKeyState(VK_CONTROL) & 0x8000) ||
 			pItem == nullptr ||
 			pItem->dwType != UNIT_ITEM) { /* skip armor range */ }
@@ -724,7 +724,7 @@ void __stdcall Item::OnProperties(wchar_t * wTxt)
 	int alvl = GetAffixLevel((BYTE)pItem->pItemData->dwItemLevel, (BYTE)uInfo.attrs->qualityLevel, uInfo.attrs->magicLevel);
 	int quality = pItem->pItemData->dwQuality;
 	// Add alvl
-	if (Toggles["Advanced Item Display"].state && Toggles["Show iLvl"].state
+	if (Toggles["Advanced Item Display"].state && Toggles["Show Item Level"].state
 			&& ilvl != alvl 
 			&& (quality == ITEM_QUALITY_MAGIC || quality == ITEM_QUALITY_RARE || quality == ITEM_QUALITY_CRAFT)) {
 		int aLen = wcslen(wTxt);
@@ -735,7 +735,7 @@ void __stdcall Item::OnProperties(wchar_t * wTxt)
 	}
 
 	// Add ilvl
-	if (Toggles["Advanced Item Display"].state && Toggles["Show iLvl"].state) {
+	if (Toggles["Advanced Item Display"].state && Toggles["Show Item Level"].state) {
 		int aLen = wcslen(wTxt);
 		swprintf_s(wTxt + aLen, MAXLEN - aLen,
 				L"%sItem Level: %d\n",
@@ -886,7 +886,7 @@ BOOL __stdcall Item::OnDamagePropertyBuild(UnitAny* pItem, DamageStats* pDmgStat
 }
 
 void __stdcall Item::OnPropertyBuild(wchar_t* wOut, int nStat, UnitAny* pItem, int nStatParam) {
-	if (!(Toggles["Always Show Item Stat Ranges"].state || GetKeyState(VK_CONTROL) & 0x8000) || pItem == nullptr || pItem->dwType != UNIT_ITEM) {
+	if (!(Toggles["Always Show Ranges"].state || GetKeyState(VK_CONTROL) & 0x8000) || pItem == nullptr || pItem->dwType != UNIT_ITEM) {
 		return;
 	}
 
