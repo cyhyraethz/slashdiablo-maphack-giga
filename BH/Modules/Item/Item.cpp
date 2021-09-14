@@ -141,6 +141,7 @@ void Item::LoadConfig() {
 	//InitializeMPQData();
 
 	BH::config->ReadKey("Show Players Gear", "VK_8", showPlayer);
+	BH::config->ReadKey("Character Stats", "VK_5", statsKey);
 }
 
 void Item::DrawSettings() {
@@ -209,6 +210,9 @@ void Item::DrawSettings() {
 	y += 15;
 	
 	new Keyhook(settingsTab, 4, y+2, &showPlayer, "Show Players Gear:  ");
+	y += 15;
+
+	new Keyhook(settingsTab, 4, y+2, &statsKey, "Character Stats:  ");
 	y += 15;
 
 	new Texthook(settingsTab, 4, y, "Filter Level:");
