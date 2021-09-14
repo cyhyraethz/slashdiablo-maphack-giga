@@ -142,6 +142,7 @@ void Item::LoadConfig() {
 
 	BH::config->ReadKey("Show Players Gear", "VK_8", showPlayer);
 	BH::config->ReadKey("Character Stats", "VK_5", statsKey);
+	BH::config->ReadKey("Reload Config", "VK_0", reloadConfig);
 }
 
 void Item::DrawSettings() {
@@ -213,6 +214,9 @@ void Item::DrawSettings() {
 	y += 15;
 
 	new Keyhook(settingsTab, 4, y+2, &statsKey, "Character Stats:  ");
+	y += 15;
+
+	new Keyhook(settingsTab, 4, y+2, &reloadConfig, "Reload Config:  ");
 	y += 15;
 
 	new Texthook(settingsTab, 4, y, "Filter Level:");

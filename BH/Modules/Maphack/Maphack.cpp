@@ -58,7 +58,6 @@ void Maphack::ReadConfig() {
 	BH::config->ReadInt("LK Chest Lines", lkLinesColor);
 	BH::config->ReadInt("Manaburn Monster Color", mbMonColor);
 
-	BH::config->ReadKey("Reload Config", "VK_0", reloadConfig);
 	BH::config->ReadToggle("Show Settings", "VK_NUMPAD8", true, Toggles["Show Settings"]);
 
 	BH::config->ReadAssoc("Missile Color", missileColors);
@@ -276,7 +275,8 @@ void Maphack::OnLoad() {
 
 void Maphack::OnKey(bool up, BYTE key, LPARAM lParam, bool* block) {
 	bool ctrlState = ((GetKeyState(VK_LCONTROL) & 0x80) || (GetKeyState(VK_RCONTROL) & 0x80));
-	if (key == 0x52 && ctrlState || key == reloadConfig) {
+	Item* item = static_cast<Item*>(BH::moduleManager->Get("item"));
+	if (key == 0x52 && ctrlState || key == item->reloadConfig) {
 		*block = true;
 		if (up)
 			BH::ReloadConfig();
