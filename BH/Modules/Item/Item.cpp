@@ -140,7 +140,7 @@ void Item::LoadConfig() {
 
 	//InitializeMPQData();
 
-	BH::config->ReadKey("Show Players Gear", "VK_0", showPlayer);
+	BH::config->ReadKey("Show Players Gear", "VK_8", showPlayer);
 }
 
 void Item::DrawSettings() {
