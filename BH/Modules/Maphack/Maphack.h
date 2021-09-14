@@ -27,7 +27,6 @@ class Maphack : public Module {
 		int mbMonColor;
 		unsigned int revealType;
 		unsigned int maxGhostSelection;
-		unsigned int reloadConfig;
 		bool revealedGame, revealedAct[6], revealedLevel[255];
 		std::map<string, string> MonsterColors;
 		std::map<string, string> SuperUniqueColors;
