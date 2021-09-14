@@ -262,9 +262,11 @@ void ScreenInfo::OnAutomapDraw() {
 	time_t tTime;
 	time(&tTime);
 	CHAR szTime[128] = "";
+	CHAR hourTime[128] = "";
 	struct tm time;
 	localtime_s(&time, &tTime);
 	strftime(szTime, sizeof(szTime), "%I:%M:%S %p", &time);
+	strftime(hourTime, sizeof(hourTime), "%H:%M:%S", &time);
 
 	// The call to GetLevelName somehow invalidates pUnit. This is only observable in O2 builds. The game
 	// will crash when you attempt to open the map (which calls OnAutomapDraw function). We need to get the player unit
@@ -287,6 +289,7 @@ void ScreenInfo::OnAutomapDraw() {
 		{"LEVEL", level},
 		{"PING", szPing},
 		{"GAMETIME", gameTime},
+		{"HOURTIME", hourTime},
 		{"REALTIME", szTime}
 	};
 
